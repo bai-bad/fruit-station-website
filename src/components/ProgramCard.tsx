@@ -1,27 +1,24 @@
 import Link from "next/link";
+import { ArrowRight, CheckCircle, Racquet } from "@phosphor-icons/react/dist/ssr";
+import type { CoachingProgram } from "@/data/programs";
 
 type ProgramCardProps = {
-  number: string;
-  title: string;
-  description: string;
-  href: string;
-  accent: "lime" | "mint" | "peach";
+  program: CoachingProgram;
+  detailed?: boolean;
 };
 
-export default function ProgramCard({ number, title, description, href, accent }: ProgramCardProps) {
+export default function ProgramCard({ program, detailed = false }: ProgramCardProps) {
   return (
-    <article className={`program-card program-card-${accent}`}>
+    <article id={program.slug} className={`program-card program-${program.accent}${detailed ? " program-detailed" : ""}`}>
       <div className="program-card-top">
-        <span className="program-number">{number}</span>
-        <span className="program-shuttle" aria-hidden="true">◢</span>
+        <span className="program-format">{program.format}</span>
+        <Racquet className="program-racquet" weight="fill" aria-hidden="true" />
       </div>
-      <div>
-        <h3>{title}</h3>
-        <p>{description}</p>
-      </div>
-      <Link className="card-link" href={href} aria-label={`Learn more about ${title}`}>
-        Learn more <span aria-hidden="true">↗</span>
-      </Link>
+      <p className="program-label">Coaching format</p>
+      <h3>{program.title}</h3>
+      <p>{program.description}</p>
+      <div className="program-best-for"><CheckCircle weight="fill" /><span><small>Best for</small>{program.bestFor}</span></div>
+      <Link className="card-link" href={`/programs#${program.slug}`} aria-label={`Learn more about ${program.title}`}>Learn More <ArrowRight weight="bold" /></Link>
     </article>
   );
 }

@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import PageIntro from "@/components/PageIntro";
+import {
+  ArrowUpRight,
+  ChatCircleDots,
+  EnvelopeSimple,
+  Phone,
+} from "@phosphor-icons/react/dist/ssr";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -8,10 +13,40 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <PageIntro
-      eyebrow="Join the rally"
-      title="Contact"
-      description="Want to join a session, try coaching, or ask about the next event? Our community contact details and enquiry form will be added here next."
-    />
+    <main className="placeholder-page contact-page">
+      <section className="contact-shell site-container" aria-labelledby="contact-title">
+        <header className="contact-heading">
+          <p className="section-eyebrow">Get in touch</p>
+          <h1 id="contact-title">Contact Fruit Station</h1>
+        </header>
+
+        <div className="contact-grid">
+          <a
+            className="contact-card contact-email"
+            href="mailto:fruitbadminton@gmail.com"
+            aria-label="Email Fruit Station at fruitbadminton@gmail.com"
+          >
+            <span className="contact-icon"><EnvelopeSimple weight="fill" /></span>
+            <span className="contact-card-copy"><small>Email</small><strong>fruitbadminton@gmail.com</strong></span>
+            <ArrowUpRight className="contact-arrow" weight="bold" aria-hidden="true" />
+          </a>
+
+          <a
+            className="contact-card contact-phone"
+            href="tel:+16479966919"
+            aria-label="Call Fruit Station at 647-996-6919"
+          >
+            <span className="contact-icon"><Phone weight="fill" /></span>
+            <span className="contact-card-copy"><small>Phone</small><strong>647-996-6919</strong></span>
+            <ArrowUpRight className="contact-arrow" weight="bold" aria-hidden="true" />
+          </a>
+
+          <div className="contact-card contact-red">
+            <span className="contact-icon"><ChatCircleDots weight="fill" /></span>
+            <span className="contact-card-copy"><small>Xiaohongshu / RED</small><strong lang="zh">多伦多菠萝</strong></span>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }
