@@ -87,6 +87,16 @@ const sharedEventFields = {
   stats: null,
 };
 
+const eventCoverImages: Record<EventSeries, string> = {
+  "kings-court": "/images/events/covers/kings-court.png",
+  "pineapple-cup": "/images/events/covers/pineapple-cup.png",
+  "see-you-after-school": "/images/events/covers/after-school.png",
+  "watermelon-cup": "/images/events/covers/watermelon-cup.png",
+  "pomegranate-cup": "/images/events/covers/pomegranate-cup.png",
+  "grapefruit-cup": "/images/events/covers/grapefruit-cup.png",
+  "mango-cup": "/images/events/covers/mango-cup.png",
+};
+
 const eventHistory: ClubEvent[] = [
   {
     ...sharedEventFields,
@@ -164,7 +174,6 @@ const eventHistory: ClubEvent[] = [
     teamSummary: "16 Doubles Pairs",
     system: "Swiss Bracket + Elimination",
     series: "pineapple-cup",
-    image: "/post-pineapple-cup.png",
     accent: "yellow",
   },
   {
@@ -191,7 +200,6 @@ const eventHistory: ClubEvent[] = [
     teamSummary: "14 Doubles Pairs",
     system: "Partial Round Robin + Elimination",
     series: "watermelon-cup",
-    image: "/post-watermelon-cup.png",
     accent: "coral",
   },
   {
@@ -257,7 +265,6 @@ const eventHistory: ClubEvent[] = [
     teamSummary: "4 Teams · 7 Players Per Team",
     system: "Race to 100 Points",
     series: "grapefruit-cup",
-    image: "/post-grapefruit-cup.jpg",
     accent: "coral",
   },
   {
@@ -271,7 +278,6 @@ const eventHistory: ClubEvent[] = [
     teamSummary: "4 Teams · 7 Players Per Team",
     system: "Team Match — 10 Games",
     series: "mango-cup",
-    image: "/post-mango-cup.jpg",
     accent: "orange",
   },
   {
@@ -289,7 +295,9 @@ const eventHistory: ClubEvent[] = [
   },
 ];
 
-export const events = [...eventHistory].sort((a, b) => b.date.localeCompare(a.date));
+export const events = eventHistory
+  .map((event) => ({ ...event, image: eventCoverImages[event.series] }))
+  .sort((a, b) => b.date.localeCompare(a.date));
 
 export const upcomingEvents = events.filter((event) => event.status === "upcoming");
 export const archivedEvents = events.filter((event) => event.status === "past");

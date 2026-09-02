@@ -23,8 +23,8 @@ export default function RecurringEventCard({ event, compact = false, headingLeve
       id={event.slug}
       className={`recurring-event-card${compact ? " recurring-event-compact" : ""}`}
     >
-      <div className={`recurring-event-visual${event.image && !compact ? " recurring-event-cover-visual" : ""}`}>
-        {event.image && !compact && (
+      <div className={`recurring-event-visual${event.image ? " recurring-event-cover-visual" : ""}`}>
+        {event.image && (
           <Image
             className="recurring-cover-image"
             src={event.image}
@@ -36,7 +36,7 @@ export default function RecurringEventCard({ event, compact = false, headingLeve
         )}
         <span className="recurring-pin"><PushPin weight="fill" /> Pinned weekly</span>
         <span className="recurring-day-badge">{event.recurrenceLabel}</span>
-        {(!event.image || compact) && (
+        {!event.image && (
           <>
             <div className="recurring-rally-mark" aria-hidden="true">
               <span><Racquet weight="fill" /></span>
