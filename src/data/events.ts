@@ -57,6 +57,7 @@ export type RecurringClubEvent = {
   recurring: true;
   recurrenceLabel: string;
   pinned: true;
+  image?: string;
   accent: "green";
 };
 
@@ -72,6 +73,7 @@ export const recurringEvents: RecurringClubEvent[] = [
     recurring: true,
     recurrenceLabel: "Every Thursday",
     pinned: true,
+    image: "/weekly-social-badminton.png",
     accent: "green",
   },
 ];

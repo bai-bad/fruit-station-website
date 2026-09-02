@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -22,14 +23,28 @@ export default function RecurringEventCard({ event, compact = false, headingLeve
       id={event.slug}
       className={`recurring-event-card${compact ? " recurring-event-compact" : ""}`}
     >
-      <div className="recurring-event-visual">
+      <div className={`recurring-event-visual${event.image && !compact ? " recurring-event-cover-visual" : ""}`}>
+        {event.image && !compact && (
+          <Image
+            className="recurring-cover-image"
+            src={event.image}
+            alt="Fruit-themed weekly badminton calendar with a racket, shuttlecocks, and playful fruit characters"
+            fill
+            preload
+            sizes="(max-width: 860px) calc(100vw - 32px), 42vw"
+          />
+        )}
         <span className="recurring-pin"><PushPin weight="fill" /> Pinned weekly</span>
         <span className="recurring-day-badge">{event.recurrenceLabel}</span>
-        <div className="recurring-rally-mark" aria-hidden="true">
-          <span><Racquet weight="fill" /></span>
-          <CalendarDots weight="fill" />
-        </div>
-        <p>Fruit Station weekly social</p>
+        {(!event.image || compact) && (
+          <>
+            <div className="recurring-rally-mark" aria-hidden="true">
+              <span><Racquet weight="fill" /></span>
+              <CalendarDots weight="fill" />
+            </div>
+            <p>Fruit Station weekly social</p>
+          </>
+        )}
       </div>
 
       <div className="recurring-event-body">
