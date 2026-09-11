@@ -126,6 +126,7 @@ h1, h2, h3 { margin: 0; font-family: var(--font-display), sans-serif; letter-spa
 .event-yellow .event-image-placeholder { background: #fff4c8; }
 .event-coral .event-image-placeholder { background: #fff0ed; }
 .event-orange .event-image-placeholder { background: #fff0da; }
+.event-peach .event-image-placeholder { background: #ffe8d8; }
 .event-image-placeholder > svg { width: 52px; height: 52px; margin-bottom: 16px; color: var(--orange); }
 .event-image-placeholder small { font-size: 9px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
 .event-image-placeholder strong { max-width: 310px; margin-top: 7px; font-family: var(--font-display), sans-serif; font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1; text-wrap: balance; }
@@ -138,6 +139,7 @@ h1, h2, h3 { margin: 0; font-family: var(--font-display), sans-serif; letter-spa
 .event-card-body { padding: 24px; }
 .event-title-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
 .event-card h3 { color: var(--green-dark); font-size: 28px; }
+.event-chinese-title { display: block; margin-top: 6px; font-family: var(--font-body), sans-serif; font-size: .58em; font-weight: 800; letter-spacing: 0; line-height: 1.25; }
 .event-system { display: flex; align-items: center; gap: 10px; min-height: 58px; margin-top: 14px; border-radius: 12px; padding: 10px 12px; background: rgb(124 179 66 / 9%); color: var(--green-dark); }
 .event-system > svg { width: 20px; height: 20px; flex: 0 0 auto; color: var(--orange); }
 .event-system span { display: flex; flex-direction: column; gap: 2px; }

@@ -6,6 +6,7 @@ import {
   MapPin,
   Racquet,
   Tag,
+  Trophy,
   UsersThree,
 } from "@phosphor-icons/react/dist/ssr";
 import {
@@ -21,6 +22,7 @@ type EventCardProps = {
 
 const seriesLabels: Record<EventSeries, string> = {
   "kings-court": "Kings Court",
+  "peach-cup": "Peach Cup",
   "pineapple-cup": "Pineapple Cup",
   "see-you-after-school": "After School",
   "watermelon-cup": "Watermelon Cup",
@@ -31,7 +33,8 @@ const seriesLabels: Record<EventSeries, string> = {
 
 export default function EventCard({ event, compact = false }: EventCardProps) {
   const displayDate = formatEventDate(event.date);
-  const hasParticipation = event.players !== null || event.teamSummary !== null;
+  const hasParticipation = event.players !== null || event.teamSummary !== null || event.stats?.matchCount !== undefined;
+  const accessibleTitle = event.displayTitle ?? event.title;
 
   return (
     <article
@@ -41,20 +44,25 @@ export default function EventCard({ event, compact = false }: EventCardProps) {
     >
       <div className="event-image-wrap">
         {event.image ? (
-          <Image className="event-image" src={event.image} alt={`${event.title} artwork from ${displayDate}`} fill sizes="(max-width: 720px) 92vw, 32vw" />
+          <Image className="event-image" src={event.image} alt={`${accessibleTitle} artwork from ${displayDate}`} fill sizes="(max-width: 720px) 92vw, 32vw" />
         ) : (
           <div className="event-image-placeholder" aria-hidden="true">
             <Racquet weight="fill" />
             <small>Fruit Station archive</small>
-            <strong>{event.title}</strong>
+            <strong>{accessibleTitle}</strong>
             <span>{displayDate}</span>
           </div>
         )}
         <span className="event-phase-badge">{event.status === "past" ? "Past Event" : "Upcoming"}</span>
-        <span className="event-type-badge"><Tag weight="fill" /> {seriesLabels[event.series]}</span>
+        <span className="event-type-badge"><Tag weight="fill" /> {event.type ?? seriesLabels[event.series]}</span>
       </div>
       <div className="event-card-body">
-        <div className="event-title-row"><h3>{event.title}</h3></div>
+        <div className="event-title-row">
+          <h3>
+            {event.title}
+            {event.chineseTitle && <span className="event-chinese-title" lang="zh">{event.chineseTitle}</span>}
+          </h3>
+        </div>
 
         <div className="event-system">
           <Tag weight="fill" />
@@ -71,6 +79,7 @@ export default function EventCard({ event, compact = false }: EventCardProps) {
           <div className="event-participation" aria-label="Participation">
             {event.players !== null && <span><UsersThree weight="fill" /><strong>{event.players}</strong> players</span>}
             {event.teamSummary !== null && <span><Racquet weight="fill" /> {event.teamSummary}</span>}
+            {event.stats?.matchCount !== undefined && <span><Trophy weight="fill" /><strong>{event.stats.matchCount}</strong> games</span>}
           </div>
         )}
 

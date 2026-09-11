@@ -4,6 +4,7 @@ export type RecurringEventStatus = "recurring";
 
 export type EventSeries =
   | "kings-court"
+  | "peach-cup"
   | "pineapple-cup"
   | "see-you-after-school"
   | "watermelon-cup"
@@ -30,9 +31,12 @@ export type ClubEvent = {
   id: string;
   slug: string;
   title: string;
+  chineseTitle?: string;
+  displayTitle?: string;
   date: string;
   time: string;
   location: string;
+  type?: string;
   status: EventStatus;
   players: number | null;
   teamSummary: string | null;
@@ -43,7 +47,7 @@ export type ClubEvent = {
   photos: readonly string[];
   stats: EventStats | null;
   image?: string;
-  accent: "yellow" | "coral" | "orange" | "green";
+  accent: "yellow" | "coral" | "orange" | "green" | "peach";
 };
 
 export type RecurringClubEvent = {
@@ -87,8 +91,9 @@ const sharedEventFields = {
   stats: null,
 };
 
-const eventCoverImages: Record<EventSeries, string> = {
+const eventCoverImages: Partial<Record<EventSeries, string>> = {
   "kings-court": "/images/events/covers/kings-court.png",
+  "peach-cup": "/images/events/covers/peach-cup.png",
   "pineapple-cup": "/images/events/covers/pineapple-cup.png",
   "see-you-after-school": "/images/events/covers/after-school.png",
   "watermelon-cup": "/images/events/covers/watermelon-cup.png",
@@ -271,12 +276,12 @@ const eventHistory: ClubEvent[] = [
     ...sharedEventFields,
     id: "mango-cup-100-point-2026-07-23",
     slug: "mango-cup-100-point-2026-07-23",
-    title: "Mango Cup — 100 Point",
+    title: "Mango Cup",
     date: "2026-07-23",
     location: "Royal Badminton Club Etobicoke",
-    players: 28,
-    teamSummary: "4 Teams · 7 Players Per Team",
-    system: "Team Match — 10 Games",
+    players: 36,
+    teamSummary: "4 Teams · 9 Players Per Team",
+    system: "Team Match",
     series: "mango-cup",
     accent: "orange",
   },
@@ -292,6 +297,22 @@ const eventHistory: ClubEvent[] = [
     system: "Swiss Bracket + Elimination",
     series: "pineapple-cup",
     accent: "yellow",
+  },
+  {
+    ...sharedEventFields,
+    id: "peach-cup-2026-09-10",
+    slug: "peach-cup-2026-09-10",
+    title: "Peach Cup",
+    date: "2026-09-10",
+    time: "9:30 PM – 12:00 AM",
+    location: "Royal Badminton Club",
+    type: "Team Tournament",
+    players: 42,
+    teamSummary: "6 Teams",
+    system: "Round Robin Group Stage + Elimination",
+    series: "peach-cup",
+    stats: { matchCount: 40 },
+    accent: "peach",
   },
 ];
 
