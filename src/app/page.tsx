@@ -10,10 +10,10 @@ import EventCard from "@/components/EventCard";
 import ProgramCard from "@/components/ProgramCard";
 import RecurringEventCard from "@/components/RecurringEventCard";
 import { homepageArchiveEvents, homepageRecurringEvent } from "@/data/events";
-import { programs } from "@/data/programs";
+import { activePrograms } from "@/data/programs";
 
 const journey = [
-  { english: "Learn", chinese: "教会", color: "yellow" },
+  { english: "Learn", chinese: "学会", color: "yellow" },
   { english: "Practice", chinese: "勤练", color: "green" },
   { english: "Compete", chinese: "常赛", color: "coral" },
   { english: "Improve", chinese: "总结", color: "blue" },
@@ -82,10 +82,10 @@ export default function Home() {
       <section className="section programs-section">
         <div className="site-container">
           <div className="section-heading">
-            <div><p className="section-eyebrow">Coaching formats</p><h2>Choose your format.</h2></div>
+            <div><p className="section-eyebrow">Coaching formats</p><h2>Ways to Improve</h2></div>
             <Link className="brush-link" href="/programs">View Programs <ArrowRight weight="bold" /></Link>
           </div>
-          <div className="program-grid program-grid-four">{programs.map((program) => <ProgramCard key={program.id} program={program} />)}</div>
+          <div className="program-grid program-grid-five">{activePrograms.map((program) => <ProgramCard key={program.id} program={program} />)}</div>
         </div>
       </section>
 
@@ -108,7 +108,7 @@ export default function Home() {
       <section className="club-life-section">
         <div className="site-container club-life-grid">
           <div className="club-photo-frame">
-            <Image src="/post-mango-cup.jpg" alt="Fruit Station players together at a badminton club event" fill sizes="(max-width: 820px) 92vw, 58vw" />
+            <Image src="/images/home/club-life.png" alt="Illustration of Fruit Station players together on a badminton court" fill sizes="(max-width: 820px) 92vw, 58vw" />
             <span>Fruit Station in action</span>
           </div>
           <div className="club-life-copy">
